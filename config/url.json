@@ -1,0 +1,67 @@
+{
+    "officialUrl": [
+        {
+            "label": "摩尔庄园（官服）",
+            "url": "http://mole.61.com/"
+        },
+        {
+            "label": "摩尔庄园（台服）",
+            "url": "http://mole.61.com.tw/"
+        }
+    ],
+    "mirrorUrl": [
+        {
+            "label": "摩尔庄园（官服 - 镜像模式）",
+            "url": "http://mole-mirror.kuro-smc.moe/"
+        },
+        {
+            "label": "摩尔庄园（台服 - 镜像模式）",
+            "url": "http://mole-tw-mirror.kuro-smc.moe/"
+        }
+    ],
+    "verseUrl": [
+        {
+            "label": "平行摩尔（主节点）",
+            "url": "https://mole.61player.com/"
+        },
+        {
+            "label": "平行摩尔（亚洲节点）",
+            "url": "https://mole-asia.61player.com/"
+        },
+        {
+            "label": "平行摩尔（亚洲节点 - 镜像模式）",
+            "url": "https://mole-sub.61player.com/"
+        },
+        {
+            "label": "平行摩尔（亚洲节点 - 救援镜像模式）",
+            "url": "http://175.178.55.57/"
+        }
+    ],
+    "informationUrl": "http://mole.61.com/news/molenew.html",
+    "externalUrl": [
+        {
+            "label": "淘米账号中心",
+            "url": "https://account.61.com/",
+            "width": 1280,
+            "height": 720
+        },
+        {
+            "label": "淘米客服中心",
+            "url": "https://kf.61.com/",
+            "width": 1280,
+            "height": 720
+        },
+        {
+            "label": "米饭社区",
+            "url": "https://mifan.61.com/",
+            "width": 560,
+            "height": 800
+        },
+        {
+            "label": "摩尔博物馆",
+            "url": "https://museum.61player.com/",
+            "width": 1280,
+            "height": 720
+        }
+    ]
+}
