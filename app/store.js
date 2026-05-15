@@ -32,6 +32,7 @@ function loadState() {
         }
     }
     setEntrypoint();
+    setCustomEntrypoint();
 }
 
 /**
@@ -53,7 +54,7 @@ function saveState() {
 }
 
 /**
- *  Store 操作 -- 记录最近一次连接的节点
+ *  Store 操作 -- 初始化默认连接节点
  * 
  *  @returns {void}
  */
@@ -61,6 +62,18 @@ function saveState() {
 function setEntrypoint() {
     if (store.state.entrypoint == '') {
         store.state.entrypoint = URL.verseUrl[0].url;
+    }
+}
+
+/**
+ *  Store 操作 -- 初始化默认自定义节点
+ * 
+ *  @returns {void}
+ */
+
+function setCustomEntrypoint() {
+    if (store.state.customEntrypoint == '') {
+        store.state.customEntrypoint = URL.verseUrl[0].url;
     }
 }
 

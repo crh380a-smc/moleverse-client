@@ -1,5 +1,7 @@
 const { store } = require('./store');
 const { createWindow } = require('./window');
+const promptDialog = require('electron-prompt');
+const { CUSTOM_ENTRYPOINT_ID, URL } = require('../config');
 
 
 /**
@@ -52,11 +54,51 @@ function clearCacheAction(window) {
  */
 
 function entrypointAction(window, entrypoint) {
+    let menuItem = {};
+    if (entrypoint.id === CUSTOM_ENTRYPOINT_ID) {
+        menuItem = {
+            id: entrypoint.id,
+            label: entrypoint.label,
+            click() {
+                store.state.entrypoint = (store.state.customEntrypoint == undefined || store.state.customEntrypoint == '') ? URL.verseUrl[0].url : store.state.customEntrypoint;
+                window.loadURL(store.state.entrypoint);
+            },
+        };
+    } else {
+        menuItem = {
+            id: entrypoint.id,
+            label: entrypoint.label,
+            click() {
+                store.state.entrypoint = entrypoint.url;
+                window.loadURL(store.state.entrypoint);
+            },
+        };
+    }
+    return menuItem;
+}
+
+/**
+ *  自定义镜像设置动作
+ * 
+ *  @returns {Object} Electron 菜单模板
+ */
+
+function customEntrypointAction() {
     return {
-        label: entrypoint.label,
+        label: '设置自定义镜像',
         click() {
-            store.state.entrypoint = entrypoint.url;
-            window.loadURL(store.state.entrypoint);
+            promptDialog({
+                title: '自定义镜像',
+                label: '请输入自定义镜像地址：',
+                value: store.state.customEntrypoint,
+                height: 200,
+                inputAttrs: {
+                    type: 'url',
+                },
+                type: 'input',
+            }).then((res) => {
+                store.state.customEntrypoint = (res === null || res == '') ? URL.verseUrl[0].url : res;
+            }).catch(console.error);
         },
     };
 }
@@ -100,6 +142,7 @@ module.exports = {
     refreshAction,
     clearCacheAction,
     entrypointAction,
+    customEntrypointAction,
     linkAction,
     devToolsAction,
 };

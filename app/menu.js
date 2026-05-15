@@ -1,6 +1,6 @@
 const { Menu } = require('electron');
 const { URL } = require('../config');
-const { refreshAction, clearCacheAction, entrypointAction, devToolsAction, linkAction } = require('./action');
+const { refreshAction, clearCacheAction, entrypointAction, devToolsAction, linkAction, customEntrypointAction } = require('./action');
 
 
 /**
@@ -68,6 +68,12 @@ function createVersionMenu(window) {
     URL.verseUrl.forEach((item) => {
         menu.push(entrypointAction(window, item));
     });
+    menu.push({type: 'separator'});
+    // 添加自定义镜像
+    URL.customUrl.forEach((item) => {
+        menu.push(entrypointAction(window, item));
+    });
+    menu.push(customEntrypointAction());
     return menu;
 }
 

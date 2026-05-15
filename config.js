@@ -9,6 +9,7 @@
 const WINDOW = require('./config/window.json');
 const URL = require('./config/url.json');
 const STORE_PATH = './data/client_data.json';
+const CUSTOM_ENTRYPOINT_ID = 999;
 
 
-module.exports = { WINDOW, URL, STORE_PATH };
+module.exports = { WINDOW, URL, STORE_PATH, CUSTOM_ENTRYPOINT_ID };

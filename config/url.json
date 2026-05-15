@@ -1,40 +1,54 @@
 {
     "officialUrl": [
         {
+            "id": 1,
             "label": "摩尔庄园（官服）",
             "url": "http://mole.61.com/"
         },
         {
+            "id": 2,
             "label": "摩尔庄园（台服）",
             "url": "http://mole.61.com.tw/"
         }
     ],
     "mirrorUrl": [
         {
+            "id": 3,
             "label": "摩尔庄园（官服 - 镜像模式）",
             "url": "http://mole-mirror.kuro-smc.moe/"
         },
         {
+            "id": 4,
             "label": "摩尔庄园（台服 - 镜像模式）",
             "url": "http://mole-tw-mirror.kuro-smc.moe/"
         }
     ],
     "verseUrl": [
         {
+            "id": 5,
             "label": "平行摩尔（主节点）",
             "url": "https://mole.61player.com/"
         },
         {
+            "id": 6,
             "label": "平行摩尔（亚洲节点）",
             "url": "https://mole-asia.61player.com/"
         },
         {
+            "id": 7,
             "label": "平行摩尔（亚洲节点 - 镜像模式）",
             "url": "https://mole-sub.61player.com/"
         },
         {
+            "id": 8,
             "label": "平行摩尔（亚洲节点 - 救援镜像模式）",
             "url": "http://175.178.55.57/"
+        }
+    ],
+    "customUrl":[ 
+        {
+            "id": 999,
+            "label": "自定义镜像"
         }
     ],
     "informationUrl": "http://mole.61.com/news/molenew.html",
