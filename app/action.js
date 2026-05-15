@@ -1,3 +1,4 @@
+const { session } = require('electron');
 const { store } = require('./store');
 const { createWindow } = require('./window');
 const promptDialog = require('electron-prompt');
