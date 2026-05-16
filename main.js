@@ -1,7 +1,7 @@
 const { app } = require('electron');
 const { createMainWindow } = require('./app/window');
 const { usePepFlash } = require('./app/plugins/flash_plugin');
-const { loadState, saveState } = require('./app/store');
+const { loadState, saveState, initState } = require('./app/store');
 const { createMenu } = require('./app/menu');
 const { createShortcut } = require('./app/shortcut');
 
@@ -16,6 +16,8 @@ const { createShortcut } = require('./app/shortcut');
 
 // 主窗口空对象
 let mainWindow = null;
+// 初始化用户配置文件
+initState();
 // 加载用户配置
 loadState();
 // 挂载 Flash 插件

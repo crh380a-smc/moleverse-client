@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 const { STORE_PATH, URL } = require('../config');
 
 
@@ -10,10 +11,31 @@ const { STORE_PATH, URL } = require('../config');
  */
 
 
+// 定义用户数据模板
+const userDataTemplate = {
+    entrypoint: "", 
+    customEntrypoint: "",
+};
+
 // 定义用户数据持久化器
 const store = {
     state: null,
 };
+
+/**
+ *  初始化用户数据文件
+ * 
+ *  @returns {void}
+ */
+
+function initState() {
+    let initData = JSON.stringify(userDataTemplate);
+    let dataDirectory = path.dirname(STORE_PATH);
+    if (!fs.existsSync(dataDirectory)) {
+        fs.mkdirSync(dataDirectory, {recursive: true});
+        fs.writeFileSync(STORE_PATH, initData, 'utf8');
+    }
+}
 
 /**
  *  加载用户数据
@@ -78,4 +100,4 @@ function setCustomEntrypoint() {
 }
 
 
-module.exports = { store, loadState, saveState };
+module.exports = { store, initState, loadState, saveState };
