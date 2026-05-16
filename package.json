@@ -14,10 +14,16 @@
   "scripts": {
     "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx electron-forge make --platform=win32 --arch=x64 --targets=@electron-forge/maker-squirrel"
+    "build-windows": "npx electron-forge make --platform=win32 --arch=x64 --targets=@electron-forge/maker-squirrel",
+    "build-darwin": "npx electron-forge make --platform=darwin --arch=x64 --targets=@electron-forge/maker-dmg",
+    "build-linux-deb": "npx electron-forge make --platform=linux --arch=x64 --targets=@electron-forge/maker-deb",
+    "build-linux-rpm": "npx electron-forge make --platform=linux --arch=x64 --targets=@electron-forge/maker-rpm"
   },
   "devDependencies": {
     "@electron-forge/cli": "^7.11.1",
+    "@electron-forge/maker-deb": "^7.11.1",
+    "@electron-forge/maker-dmg": "^7.11.1",
+    "@electron-forge/maker-rpm": "^7.11.1",
     "@electron-forge/maker-squirrel": "^7.11.1",
     "electron": "^11.4.7"
   },

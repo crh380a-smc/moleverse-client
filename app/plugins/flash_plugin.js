@@ -28,6 +28,7 @@ function usePepFlash() {
             break
         case 'linux':
             name = 'libpepflashplayer.so';
+            version = '26.0.0.151';
             break;
         case 'win32':
         default:
