@@ -17,27 +17,30 @@ const { app } = require('electron');
  */
 
 function usePepFlash() {
-    // Flash 插件名和版本号存储变量
+    // Flash 插件名、版本号、操作系统存储变量
     let name;
     let version;
+    let platform;
     // 根据运行环境分配合适的 Flash 插件
     switch (process.platform) {
         case 'darwin':
+            platform = 'darwin';
             name = 'PepperFlashPlayer.plugin';
             version = '21.0.0.204';
-            break
-        case 'linux':
-            name = 'libpepflashplayer.so';
-            version = '26.0.0.151';
             break;
         case 'win32':
-        default:
+            platform = 'windows';
             name = 'pepflashplayer64_26_0_0_131.dll';
             version = '26.0.0.131';
             break;
+        default:
+            platform = 'linux';
+            name = 'libpepflashplayer.so';
+            version = '34.0.0.137';
+            break;
     }
     // 向 Electron 挂载 Flash 插件
-    app.commandLine.appendSwitch('ppapi-flash-path', path.join(__dirname, name));
+    app.commandLine.appendSwitch('ppapi-flash-path', path.join(__dirname, platform, name));
     app.commandLine.appendSwitch('ppapi-flash-version', version);
     app.commandLine.appendSwitch('--disable-http-cache');
 }
