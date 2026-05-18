@@ -70,7 +70,14 @@ npm run dist
 
 ## 五、注意事项
 
-<span id="ex1">1.此微端内置的镜像节点由 [@C.R.H](https://github.com/crh380a-smc) 提供。共有 [官方服务器（国服）](http://mole-mirror.kuro-smc.moe/) 、[官方服务器（台服）](http://mole-tw-mirror.kuro-smc.moe/) 、 [平行摩尔（亚洲节点镜像）](https://mole-sub.61player.com/) 、 [平行摩尔（亚洲节点救援镜像）](http://175.178.55.57/) 可供使用。</span>
+<span id="ex1">1.此微端内置的镜像节点由 [@C.R.H](https://github.com/crh380a-smc) 提供。以下是镜像列表：</span>
+
+| 镜像名称 | 镜像地址 | 说明 |
+| :-----: | :-----: | :----- |
+| 官方服务器（国服）镜像 | [http://mole-mirror.kuro-smc.moe/](http://mole-mirror.kuro-smc.moe/) | 适用于境外摩尔回连官方国服 |
+| 官方服务器（台服）镜像 | [http://mole-tw-mirror.kuro-smc.moe/](http://mole-tw-mirror.kuro-smc.moe/) | 适用于境内摩尔连接官方台服 |
+| 平行摩尔（亚洲节点）镜像 | [https://mole-sub.61player.com/](https://mole-sub.61player.com/) | 适用于平行摩尔主节点网络拥堵、亚洲节点延迟较高的情况 |
+| 平行摩尔（亚洲节点）救援镜像 | [http://175.178.55.57/](http://175.178.55.57/) | 适用于境内部分区域（特别是福建）无法正常连接平行摩尔主节点、亚洲节点的情况 |
 
 <span id="ex2">2.使用自定义镜像节点时，请您仔细确认镜像提供者的意图和目的。我个人建议您理解其使用风险，保持谨慎，并时刻注意您的账号安全。</span>
 
@@ -82,4 +89,4 @@ npm run dist
 
 2. Linux 版本无法正常加载 `libpepflashplayer.so` ，导致无法加载 Flash 内容。
 
-下一步，我将会尝试解决上述的痛点问题，力争将此微端覆盖到更多的操作系统，并逐步添加对游戏有帮助的小功能、外部链接等，服务广大摩尔玩家们。由于我缺少 Mac OS、Linux 调试环境，在此深切渴望广大技术摩能协助我探究与解决上述问题。
+下一步，我将会尝试解决上述的痛点问题，力争将此微端覆盖到更多的操作系统，并逐步添加对游戏有帮助的小功能、外部链接等，更好服务于广大摩尔玩家。由于我缺少 Mac OS、Linux 调试环境，在此深切渴望广大技术摩能协助我探究与解决上述问题。
