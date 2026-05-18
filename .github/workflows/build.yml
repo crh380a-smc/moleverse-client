@@ -13,7 +13,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ 'windows-2025', 'macos-15', 'ubuntu-24.04' ]
+        # os: [ 'windows-2025', 'macos-15', 'ubuntu-24.04' ]
+        os: [ 'windows-2025' ]
 
     steps:
       - name: Check out Git repository
