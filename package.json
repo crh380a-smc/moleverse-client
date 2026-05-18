@@ -1,6 +1,6 @@
 {
   "name": "mole-client",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "MoleVerse Electron Client",
   "keywords": ["Electron"],
   "license": "MIT",
@@ -40,18 +40,18 @@
     "mac": {
       "category": "public.app-category.productivity",
       "icon": "resources/mole.icns",
-      "artifactName": "${productName}-${version}-${arch}.${ext}",
+      "artifactName": "${productName}-Darwin-${version}-${arch}.${ext}",
       "target": ["zip"]
     },
     "win": {
       "verifyUpdateCodeSignature": false,
       "icon": "resources/mole.ico",
-      "artifactName": "${productName}-${version}.${ext}",
+      "artifactName": "${productName}-Windows-${version}.${ext}",
       "target": ["zip"]
     },
     "linux": {
       "icon": "resources/mole.png",
-      "artifactName": "${productName}-${version}.${ext}",
+      "artifactName": "${productName}-Linux-${version}.${ext}",
       "target": ["zip"]
     },
     "asar": false
