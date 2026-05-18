@@ -1,6 +1,6 @@
 const fs = require('fs');
-const path = require('path');
-const { STORE_PATH, URL } = require('../config');
+const { app } = require('electron');
+const { URL } = require('../config');
 
 
 /**
@@ -10,6 +10,9 @@ const { STORE_PATH, URL } = require('../config');
  *  @license MIT
  */
 
+
+// 用户数据存储路径常量
+const DATA_FILE = `${app.getPath('userData')}/user_data.json`;
 
 // 定义用户数据模板
 const userDataTemplate = {
@@ -30,11 +33,7 @@ const store = {
 
 function initState() {
     let initData = JSON.stringify(userDataTemplate);
-    let dataDirectory = path.dirname(STORE_PATH);
-    if (!fs.existsSync(dataDirectory)) {
-        fs.mkdirSync(dataDirectory, {recursive: true});
-        fs.writeFileSync(STORE_PATH, initData, 'utf8');
-    }
+    fs.writeFileSync(DATA_FILE, initData, 'utf8');
 }
 
 /**
@@ -46,8 +45,8 @@ function initState() {
 function loadState() {
     if (store.state === null) {
         try {
-            // 从 STORE_PATH 里读取用户配置文件，存入 store.state
-            let storeFile = fs.readFileSync(STORE_PATH, 'utf8');
+            // 从 DATA_FILE 里读取用户配置文件，存入 store.state
+            let storeFile = fs.readFileSync(DATA_FILE, 'utf8');
             store.state = JSON.parse(storeFile);
         } catch (e) {
             console.error(`读取状态失败：${e}`);
@@ -66,9 +65,9 @@ function loadState() {
 function saveState() {
     if (store.state !== null) {
         try {
-            // 将 store.state 的数据编码成 JSON，存入 STORE_PATH 的用户配置文件
+            // 将 store.state 的数据编码成 JSON，存入 DATA_FILE 的用户配置文件
             let storeData = JSON.stringify(store.state);
-            fs.writeFileSync(STORE_PATH, storeData, 'utf8');
+            fs.writeFileSync(DATA_FILE, storeData, 'utf8');
         } catch (e) {
             console.error(`保存状态失败：${e}`);
         }
