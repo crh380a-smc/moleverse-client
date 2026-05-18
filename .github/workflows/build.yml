@@ -10,37 +10,38 @@ jobs:
     name: Build and release MoleVerse client
     runs-on: ${{ matrix.os }}
 
-  strategy:
-    matrix:
-      os: [ 'windows-latest', 'macos-latest', 'ubuntu-latest' ]
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ 'windows-2025', 'macos-15', 'ubuntu-24.04' ]
 
-  steps:
-    - name: Check out Git repository
-      uses: actions/checkout@v3.0.0
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v6
 
-    - name: Install Node.js
-      uses: actions/setup-node@v3.0.0
-      with:
-        node-version: "24.15.0"
+      - name: Install Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24.15.0"
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Build Electron app
-      run: npm run dist
-      env:
-        GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+      - name: Build Electron app
+        run: npm run dist
+        env:
+          GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
-    - name: Upload artifacts
-      uses: actions/upload-artifacts@v3.0.0
-      with:
-        name: ${{ matrix.os }}
-        path: dist
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.os }}
+          path: dist
 
-    - name: Release client
-      uses: softprops/action-gh-release@v0.1.14
-      if: startsWith(github.ref, 'refs/tags/')
-      with:
-        files: 'dist/**'
-      env:
-        GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+      - name: Release client
+        uses: softprops/action-gh-release@v3
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: 'dist/**'
+        env:
+          GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}

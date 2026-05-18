@@ -2,11 +2,7 @@
   "name": "mole-client",
   "version": "0.0.1",
   "description": "MoleVerse Electron Client",
-  "keywords": [
-    "MoleVerse",
-    "Flash",
-    "Electron"
-  ],
+  "keywords": ["Electron"],
   "license": "MIT",
   "author": "C.R.H",
   "type": "commonjs",
@@ -63,6 +59,6 @@
   "publish": [{
     "provider": "github",
     "owner": "crh380a-smc",
-    "repo": "crh380a-smc/moleverse-client"
+    "repo": "moleverse-client"
   }]
 }
