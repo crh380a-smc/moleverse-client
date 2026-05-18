@@ -12,25 +12,57 @@
   "type": "commonjs",
   "main": "main.js",
   "scripts": {
-    "start": "electron .",
+    "dev": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-windows": "npx electron-forge make --platform=win32 --arch=x64 --targets=@electron-forge/maker-squirrel",
-    "build-darwin": "npx electron-forge make --platform=darwin --arch=x64 --targets=@electron-forge/maker-zip",
-    "build-linux-deb": "npx electron-forge make --platform=linux --arch=x64 --targets=@electron-forge/maker-deb",
-    "build-linux-rpm": "npx electron-forge make --platform=linux --arch=x64 --targets=@electron-forge/maker-rpm"
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder -p always"
   },
   "devDependencies": {
-    "@electron-forge/cli": "^7.11.1",
-    "@electron-forge/maker-deb": "^7.11.1",
-    "@electron-forge/maker-rpm": "^7.11.1",
-    "@electron-forge/maker-squirrel": "^7.11.1",
-    "@electron-forge/maker-zip": "^7.11.1",
-    "electron": "^11.4.7"
+    "electron": "^11.4.7",
+    "electron-builder": "^26.8.1"
   },
   "dependencies": {
     "electron-prompt": "^1.7.0"
   },
-  "config": {
-    "forge": "./force.config.js"
-  }
+  "build": {
+    "appId": "MoleVerseClient",
+    "productName": "MoleVerseClient",
+    "files": [
+      "build/**/*",
+      "node_modules/**/*",
+      "config/**/*",
+      "app/**/*",
+      "config.js",
+      "main.js",
+      "package.json"
+    ],
+    "directories": {
+      "output": "dist",
+      "buildResources": "resources"
+    },
+    "extends": null,
+    "mac": {
+      "category": "public.app-category.productivity",
+      "icon": "resources/mole.icns",
+      "artifactName": "${productName}-${version}-${arch}.${ext}",
+      "target": ["zip"]
+    },
+    "win": {
+      "verifyUpdateCodeSignature": false,
+      "icon": "resources/mole.ico",
+      "artifactName": "${productName}-${version}.${ext}",
+      "target": ["zip"]
+    },
+    "linux": {
+      "icon": "resources/mole.png",
+      "artifactName": "${productName}-${version}.${ext}",
+      "target": ["zip"]
+    },
+    "asar": false
+  },
+  "publish": [{
+    "provider": "github",
+    "owner": "crh380a-smc",
+    "repo": "crh380a-smc/moleverse-client"
+  }]
 }
