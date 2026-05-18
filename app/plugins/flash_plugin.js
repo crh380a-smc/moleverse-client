@@ -43,6 +43,10 @@ function usePepFlash() {
     app.commandLine.appendSwitch('ppapi-flash-path', path.join(__dirname, platform, name));
     app.commandLine.appendSwitch('ppapi-flash-version', version);
     app.commandLine.appendSwitch('--disable-http-cache');
+    // Linux 系统下，Flash 插件与 Electron sanbox 相冲突，禁用 sandbox 后即可正常挂载插件
+    if (platform == 'linux') {
+        app.commandLine.appendSwitch('no-sandbox');
+    }
 }
 
 
