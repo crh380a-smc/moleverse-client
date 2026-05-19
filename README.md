@@ -81,12 +81,31 @@ npm run dist
 
 <span id="ex2">2.使用自定义镜像节点时，请您仔细确认镜像提供者的意图和目的。我个人建议您理解其使用风险，保持谨慎，并时刻注意您的账号安全。</span>
 
-## 六、存在问题和下一步计划
+## 六、常见问题
 
-尽管此微端已在初期通过了 Windows、Mac OS、Linux 操作系统下的打包流程测试，但只有 Windows 版本可正常运行，其余版本存在的问题如下：
+### 1. Linux 版本提示 `chrome-sandbox` 权限不足的解决方法
 
-1. Mac OS 版本无法读取用户数据存储目录和文件。该文件位于应用根目录的 `data/` 目录中，应用初始化时会自动创建该目录，并在里面创建用户数据文件。但目前该目录不能正常创建，导致应用初始化失败报错。
+下载 Linux 微端解压后，运行时会提示：
 
-2. Linux 版本无法正常加载 `libpepflashplayer.so` ，导致无法加载 Flash 内容。
+```
+The SUID sandbox helper binary was found, but is not configured correctly. Rather than run without sandboxing I'm aborting now. You need to make sure that /path/to/your/mole-client/chrome-sandbox is owned by root and has mode 4755.
+```
 
-下一步，我将会尝试解决上述的痛点问题，力争将此微端覆盖到更多的操作系统，并逐步添加对游戏有帮助的小功能、外部链接等，更好服务于广大摩尔玩家。由于我缺少 Mac OS、Linux 调试环境，在此深切渴望广大技术摩能协助我探究与解决上述问题。
+此时可通过下列命令获取权限：
+
+```
+# 进入您的 Linux 微端目录
+cd /path/to/your/mole-client
+
+# 设置所有者为 root
+sudo chown root ./chrome-sandbox
+
+# 设置权限
+sudo chmod 4755 ./chrome-sandbox
+```
+
+此时重新进入微端，即可解决问题。
+
+### 2. Linux 版微端打开摩尔庄园官方国服仍提示未找到 Flash 插件，但其余服务器能够正常游玩
+
+由于摩尔庄园官方国服的 SWFObject（`http://webres.61.com/common/js/swfobject.js`）未兼容 Linux 版本的 Flash 插件，所以 Linux 微端无法正常加载官方国服的 `Client.swf` 。此问题需要淘米修复 SWFObject ，目前暂时没有解决办法。
