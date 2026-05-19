@@ -1,0 +1,7 @@
+{
+    "swfObjectFilter": {
+        "pattern": "http://webres.61.com/common/js/swfobject.js*",
+        "localResource": "/swfobject/swfobject.js",
+        "platform": "linux"
+    }
+}
