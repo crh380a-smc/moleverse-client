@@ -4,6 +4,7 @@ const { usePepFlash } = require('./app/plugins/flash_plugin');
 const { loadState, saveState, initState } = require('./app/store');
 const { createMenu } = require('./app/menu');
 const { createShortcut } = require('./app/shortcut');
+const { createFilter } = require('./app/filter');
 
 
 /**
@@ -25,6 +26,8 @@ usePepFlash();
 
 /* 应用准备就绪的流程控制 */
 app.on('ready', () => {
+    // 创建资源过滤器
+    createFilter();
     // 创建主窗口并返回主窗口实例
     mainWindow = createMainWindow();
     // 创建菜单

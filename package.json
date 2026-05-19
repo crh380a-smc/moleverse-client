@@ -30,7 +30,8 @@
       "app/**/*",
       "config.js",
       "main.js",
-      "package.json"
+      "package.json",
+      "resources"
     ],
     "directories": {
       "output": "dist",
