@@ -32,8 +32,10 @@ const store = {
  */
 
 function initState() {
-    let initData = JSON.stringify(userDataTemplate);
-    fs.writeFileSync(DATA_FILE, initData, 'utf8');
+    if (!fs.existsSync(DATA_FILE)) {
+        let initData = JSON.stringify(userDataTemplate);
+        fs.writeFileSync(DATA_FILE, initData, 'utf8');
+    }
 }
 
 /**
