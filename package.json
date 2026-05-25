@@ -6,7 +6,7 @@
   "license": "MIT",
   "author": "C.R.H",
   "type": "commonjs",
-  "main": "main.js",
+  "main": "src/main.js",
   "scripts": {
     "dev": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -24,34 +24,29 @@
     "appId": "MoleVerseClient",
     "productName": "MoleVerseClient",
     "files": [
-      "build/**/*",
       "node_modules/**/*",
-      "config/**/*",
-      "app/**/*",
-      "config.js",
-      "main.js",
-      "package.json",
-      "resources"
+      "src/**/*",
+      "package.json"
     ],
     "directories": {
       "output": "dist",
-      "buildResources": "resources"
+      "buildResources": "build"
     },
     "extends": null,
     "mac": {
       "category": "public.app-category.productivity",
-      "icon": "resources/mole.icns",
+      "icon": "build/mole.icns",
       "artifactName": "${productName}-Darwin-${version}-${arch}.${ext}",
       "target": ["zip"]
     },
     "win": {
       "verifyUpdateCodeSignature": false,
-      "icon": "resources/mole.ico",
+      "icon": "build/mole.ico",
       "artifactName": "${productName}-Windows-${version}.${ext}",
       "target": ["zip"]
     },
     "linux": {
-      "icon": "resources/mole.png",
+      "icon": "build/mole.png",
       "artifactName": "${productName}-Linux-${version}.${ext}",
       "target": ["zip"]
     },

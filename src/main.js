@@ -1,6 +1,6 @@
 const { app } = require('electron');
 const { createMainWindow } = require('./app/window');
-const { usePepFlash } = require('./app/plugins/flash_plugin');
+const { usePepFlash } = require('./app/plugin/flash_plugin');
 const { loadState, saveState, initState } = require('./app/store');
 const { createMenu } = require('./app/menu');
 const { createShortcut } = require('./app/shortcut');
