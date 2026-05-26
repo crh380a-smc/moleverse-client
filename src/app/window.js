@@ -33,7 +33,7 @@ function createMainWindow() {
         }
     });
     // 加载最近一次连接的节点
-    mainWindow.loadURL(store.state.entrypoint);
+    mainWindow.loadURL(store.get('entrypoint'));
     // 返回 Electron 窗口对象
     return mainWindow;
 }

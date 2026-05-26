@@ -21,7 +21,7 @@ function refreshShortcut(window) {
     // F5
     globalShortcut.register('F5', () => {
         if (window) {
-            window.loadURL(store.state.entrypoint);
+            window.loadURL(store.get('entrypoint'));
         }
     });
 }
@@ -38,7 +38,7 @@ function clearCacheShortcut(window) {
     globalShortcut.register('CommandOrControl+F5', () => {
         if (window) {
             session.defaultSession.clearCache();
-            window.loadURL(store.state.entrypoint);
+            window.loadURL(store.get('entrypoint'));
         }
     });
 }

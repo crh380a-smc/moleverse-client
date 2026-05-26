@@ -1,0 +1,12 @@
+{
+    "entrypoint": {
+        "type": "string",
+        "format": "url",
+        "default": "https://mole.61player.com/"
+    }, 
+    "customEntrypoint": {
+        "type": "string",
+        "format": "url",
+        "default": "https://mole.61player.com/"
+    }
+}

@@ -2,7 +2,9 @@
   "name": "mole-client",
   "version": "0.0.3",
   "description": "MoleVerse Electron Client",
-  "keywords": ["Electron"],
+  "keywords": [
+    "Electron"
+  ],
   "license": "MIT",
   "author": "C.R.H",
   "type": "commonjs",
@@ -15,7 +17,8 @@
   },
   "devDependencies": {
     "electron": "^11.4.7",
-    "electron-builder": "^26.8.1"
+    "electron-builder": "^26.8.1",
+    "electron-store": "^8.0.0"
   },
   "dependencies": {
     "electron-prompt": "^1.7.0"
@@ -37,24 +40,32 @@
       "category": "public.app-category.productivity",
       "icon": "build/mole.icns",
       "artifactName": "${productName}-Darwin-${version}-${arch}.${ext}",
-      "target": ["zip"]
+      "target": [
+        "zip"
+      ]
     },
     "win": {
       "verifyUpdateCodeSignature": false,
       "icon": "build/mole.ico",
       "artifactName": "${productName}-Windows-${version}.${ext}",
-      "target": ["zip"]
+      "target": [
+        "zip"
+      ]
     },
     "linux": {
       "icon": "build/mole.png",
       "artifactName": "${productName}-Linux-${version}.${ext}",
-      "target": ["zip"]
+      "target": [
+        "zip"
+      ]
     },
     "asar": false
   },
-  "publish": [{
-    "provider": "github",
-    "owner": "crh380a-smc",
-    "repo": "moleverse-client"
-  }]
+  "publish": [
+    {
+      "provider": "github",
+      "owner": "crh380a-smc",
+      "repo": "moleverse-client"
+    }
+  ]
 }
