@@ -17,35 +17,36 @@ const { app } = require('electron');
  */
 
 function usePepFlash() {
-    // Flash 版本号、插件路径存储变量
-    let flashVersion;
-    let flashPath;
+    // Flash 插件名、版本号、操作系统存储变量
+    let name;
+    let version;
+    let platform;
     // 根据运行环境分配合适的 Flash 插件
     switch (process.platform) {
         case 'darwin':
-            flashPath = path.join(__dirname, 'darwin', 'PepperFlashPlayer.plugin');
-            flashVersion = '21.0.0.204';
+            platform = 'darwin';
+            name = 'PepperFlashPlayer.plugin';
+            version = '21.0.0.204';
             break;
         case 'win32':
-            flashPath = path.join(__dirname, 'windows', 'pepflashplayer64_26_0_0_131.dll');
-            flashVersion = '26.0.0.131';
+            platform = 'windows';
+            name = 'pepflashplayer64_26_0_0_131.dll';
+            version = '26.0.0.131';
             break;
         default:
-            if (process.arch == 'arm' || process.arch == 'arm64') {
-                flashPath = path.join(__dirname, 'linux', 'arm64', 'libpepflashplayer.so');
-                flashVersion = '12.0.0.77';
-            } else {
-                flashPath = path.join(__dirname, 'linux', 'x64', 'libpepflashplayer.so');
-                flashVersion = '34.0.0.137';
-            }
+            platform = 'linux';
+            name = 'libpepflashplayer.so';
+            version = '34.0.0.137';
             break;
     }
     // 向 Electron 挂载 Flash 插件
-    app.commandLine.appendSwitch('ppapi-flash-path', flashPath);
-    app.commandLine.appendSwitch('ppapi-flash-version', flashVersion);
+    app.commandLine.appendSwitch('ppapi-flash-path', path.join(__dirname, platform, name));
+    app.commandLine.appendSwitch('ppapi-flash-version', version);
     app.commandLine.appendSwitch('--disable-http-cache');
-    // 禁用 chrome-sandbox
-    app.commandLine.appendSwitch('no-sandbox');
+    // Linux 系统下，Flash 插件与 Electron sandbox 相冲突，禁用 sandbox 后即可正常挂载插件
+    if (platform == 'linux') {
+        app.commandLine.appendSwitch('no-sandbox');
+    }
 }
 
 

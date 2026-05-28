@@ -54,7 +54,7 @@
     },
     "linux": {
       "icon": "build/mole.png",
-      "artifactName": "${productName}-Linux-${version}-${arch}.${ext}",
+      "artifactName": "${productName}-Linux-${version}.${ext}",
       "target": [
         "zip"
       ]
