@@ -1,5 +1,5 @@
 const { session } = require('electron');
-const FILTERS = require('../config/filter.json');
+const { FILTERS } = require('../config');
 
 
 /**

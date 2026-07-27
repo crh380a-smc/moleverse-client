@@ -24,7 +24,7 @@ function refreshAction(window) {
     return {
         label: '刷新页面（F5）',
         click() {
-            window.loadURL(store.state.entrypoint);
+            window.reload();
         },
     };
 }
@@ -41,7 +41,7 @@ function clearCacheAction(window) {
         label: '清除缓存并刷新页面（Ctrl+F5）',
         click() {
             session.defaultSession.clearCache();
-            window.loadURL(store.state.entrypoint);
+            window.reload();
         },
     };
 }
@@ -61,8 +61,9 @@ function entrypointAction(window, entrypoint) {
             id: entrypoint.id,
             label: entrypoint.label,
             click() {
-                store.state.entrypoint = (store.state.customEntrypoint == undefined || store.state.customEntrypoint == '') ? URL.verseUrl[0].url : store.state.customEntrypoint;
-                window.loadURL(store.state.entrypoint);
+                let e = (store.get('customEntrypoint') == undefined || store.get('customEntrypoint') == '') ? URL.verseUrl[0].url : store.get('customEntrypoint');
+                store.set('entrypoint', e);
+                window.loadURL(store.get('entrypoint'));
             },
         };
     } else {
@@ -70,8 +71,8 @@ function entrypointAction(window, entrypoint) {
             id: entrypoint.id,
             label: entrypoint.label,
             click() {
-                store.state.entrypoint = entrypoint.url;
-                window.loadURL(store.state.entrypoint);
+                store.set('entrypoint', entrypoint.url);
+                window.loadURL(store.get('entrypoint'));
             },
         };
     }
@@ -91,14 +92,15 @@ function customEntrypointAction() {
             promptDialog({
                 title: '自定义镜像',
                 label: '请输入自定义镜像地址：',
-                value: store.state.customEntrypoint,
+                value: store.get('customEntrypoint'),
                 height: 200,
                 inputAttrs: {
                     type: 'url',
                 },
                 type: 'input',
             }).then((res) => {
-                store.state.customEntrypoint = (res === null || res == '') ? URL.verseUrl[0].url : res;
+                let e = (res === null || res == '') ? URL.verseUrl[0].url : res;
+                store.set('customEntrypoint', e);
             }).catch(console.error);
         },
     };
