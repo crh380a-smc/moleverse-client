@@ -17,10 +17,10 @@
   },
   "devDependencies": {
     "electron": "^11.4.7",
-    "electron-builder": "^26.8.1",
-    "electron-store": "^8.0.0"
+    "electron-builder": "^26.8.1"
   },
   "dependencies": {
+    "electron-store": "^8.0.0",
     "electron-prompt": "^1.7.0"
   },
   "build": {
