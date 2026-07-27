@@ -24,7 +24,7 @@ function refreshAction(window) {
     return {
         label: '刷新页面（F5）',
         click() {
-            window.loadURL(store.get('entrypoint'));
+            window.reload();
         },
     };
 }
@@ -41,7 +41,7 @@ function clearCacheAction(window) {
         label: '清除缓存并刷新页面（Ctrl+F5）',
         click() {
             session.defaultSession.clearCache();
-            window.loadURL(store.get('entrypoint'));
+            window.reload();
         },
     };
 }

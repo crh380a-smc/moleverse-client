@@ -1,6 +1,6 @@
 {
   "name": "mole-client",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "MoleVerse Electron Client",
   "keywords": [
     "Electron"
