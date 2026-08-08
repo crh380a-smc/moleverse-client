@@ -3,52 +3,61 @@
         {
             "id": 1,
             "label": "摩尔庄园（官服）",
-            "url": "http://mole.61.com/"
+            "url": "http://mole.61.com/",
+            "shortcut": "CommandOrControl+G"
         },
         {
             "id": 2,
             "label": "摩尔庄园（台服）",
-            "url": "http://mole.61.com.tw/"
+            "url": "http://mole.61.com.tw/",
+            "shortcut": "CommandOrControl+T"
         }
     ],
     "mirrorUrl": [
         {
             "id": 3,
             "label": "摩尔庄园（官服 - 镜像模式）",
-            "url": "http://mole-mirror.kuro-smc.moe/"
+            "url": "http://mole-mirror.kuro-smc.moe/",
+            "shortcut": "CommandOrControl+Alt+G"
         },
         {
             "id": 4,
             "label": "摩尔庄园（台服 - 镜像模式）",
-            "url": "http://mole-tw-mirror.kuro-smc.moe/"
+            "url": "http://mole-tw-mirror.kuro-smc.moe/",
+            "shortcut": "CommandOrControl+Alt+T"
         }
     ],
     "verseUrl": [
         {
             "id": 5,
             "label": "平行摩尔（主节点）",
-            "url": "https://mole.61player.com/"
+            "url": "https://mole.61player.com/",
+            "shortcut": "CommandOrControl+M"
         },
         {
             "id": 6,
             "label": "平行摩尔（亚洲节点）",
-            "url": "https://mole-asia.61player.com/"
+            "url": "https://mole-asia.61player.com/",
+            "shortcut": "CommandOrControl+A"
         },
         {
             "id": 7,
             "label": "平行摩尔（亚洲节点 - 镜像模式）",
-            "url": "https://mole-sub.61player.com/"
+            "url": "https://mole-sub.61player.com/",
+            "shortcut": "CommandOrControl+B"
         },
         {
             "id": 8,
             "label": "平行摩尔（亚洲节点 - 救援镜像模式）",
-            "url": "http://175.178.55.57/"
+            "url": "http://175.178.55.57/",
+            "shortcut": "CommandOrControl+R"
         }
     ],
     "customUrl":[ 
         {
             "id": 999,
-            "label": "自定义镜像"
+            "label": "自定义镜像",
+            "shortcut": "CommandOrControl+U"
         }
     ],
     "informationUrl": "http://mole.61.com/news/molenew.html",

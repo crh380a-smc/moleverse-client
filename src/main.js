@@ -2,7 +2,6 @@ const { app } = require('electron');
 const { createMainWindow } = require('./app/window');
 const { usePepFlash } = require('./app/plugin/flash_plugin');
 const { createMenu } = require('./app/menu');
-const { createShortcut } = require('./app/shortcut');
 const { createFilter } = require('./app/filter');
 
 
@@ -27,8 +26,6 @@ app.on('ready', () => {
     mainWindow = createMainWindow();
     // 创建菜单
     createMenu(mainWindow);
-    // 创建快捷键
-    createShortcut(mainWindow);
     /* 主窗口关闭时的流程控制 */
     mainWindow.on('closed', function() {
         // 销毁主窗口对象

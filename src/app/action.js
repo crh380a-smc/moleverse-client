@@ -22,7 +22,8 @@ const { CUSTOM_ENTRYPOINT_ID, URL } = require('../config');
 
 function refreshAction(window) {
     return {
-        label: '刷新页面（F5）',
+        label: '刷新页面',
+        accelerator: 'F5',
         click() {
             window.reload();
         },
@@ -38,7 +39,8 @@ function refreshAction(window) {
 
 function clearCacheAction(window) {
     return {
-        label: '清除缓存并刷新页面（Ctrl+F5）',
+        label: '清除缓存并刷新页面',
+        accelerator: "CommandOrControl+F5",
         click() {
             session.defaultSession.clearCache();
             window.reload();
@@ -65,6 +67,7 @@ function entrypointAction(window, entrypoint) {
                 store.set('entrypoint', e);
                 window.loadURL(store.get('entrypoint'));
             },
+            accelerator: entrypoint.shortcut,
         };
     } else {
         menuItem = {
@@ -74,6 +77,7 @@ function entrypointAction(window, entrypoint) {
                 store.set('entrypoint', entrypoint.url);
                 window.loadURL(store.get('entrypoint'));
             },
+            accelerator: entrypoint.shortcut,
         };
     }
     return menuItem;
@@ -103,6 +107,7 @@ function customEntrypointAction() {
                 store.set('customEntrypoint', e);
             }).catch(console.error);
         },
+        accelerator: "CommandOrControl+Alt+U"
     };
 }
 
@@ -132,6 +137,7 @@ function linkAction(link) {
 function devToolsAction(window) {
     return {
         label: '开发者工具',
+        accelerator: "CommandOrControl+F12",
         click() {
             if (window) {
                 window.webContents.openDevTools();
