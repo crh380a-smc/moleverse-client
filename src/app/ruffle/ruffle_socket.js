@@ -1,8 +1,8 @@
 const os = require('os');
 const path = require('path');
 const { app } = require('electron');
-const { spawn } = require('child_process');
-const { RUFFLE_SOCKET_PORT } = require('../../config');
+const { fork } = require('child_process');
+const { RUFFLE_SOCKET_PORT, BASE_DIR } = require('../../config');
 
 /**
  *  平行摩尔 Electron 微端 -- Ruffle Socket 桥调用业务定义
@@ -24,16 +24,16 @@ function isArm() {
 
 
 /**
- *  获取 Socket 桥执行文件路径
+ *  获取淘米服务器清单文件路径
  * 
  *  @returns {String}
  */
 
-function getSocketPath() {
+function getHostFile() {
     if (app.isPackaged) {
-        return path.join(process.resourcesPath, 'app', 'src', 'app', 'ruffle');
+        return path.join(process.resourcesPath, 'app', 'src', 'manifest', 'ruffle-hosts.json');
     } else {
-        return path.join(__dirname);
+        return path.join(BASE_DIR, 'manifest', 'ruffle-hosts.json');
     }
 }
 
@@ -47,25 +47,22 @@ function getSocketPath() {
 
 function startSocket(proc) {
     // 启动 Socket 桥
-    proc = spawn(path.join(getSocketPath(), 'MoleSocketBridge'), [
-        '--allow', path.join(getSocketPath(), 'ruffle-hosts.json'),
+    proc = fork(path.join(__dirname, 'ws_bridge.js'), [
+        '--allow', getHostFile(),
         '--any', RUFFLE_SOCKET_PORT,
-    ], {
-        stdio: ['pipe', 'pipe', 'pipe'],
-        env: { ...process.env, PYTHONUNBUFFERED: 1 },
-    });
+    ]);
     // 实时收集日志
-    proc.stdout.on('data', (data) => {
+    proc.on('message', (data) => {
         console.log(`[Socket][INFO] - ${data.toString().trim()}`);
     });
-    proc.stderr.on('data', (data) => {
+    proc.on('error', (data) => {
         console.error(`[Socket][ERROR] - ${data.toString().trim()}`);
     });
     // 处理 Socket 桥异常与崩溃恢复
-    proc.on('close', (code) => {
-        console.log(`[SOCKET][INFO] - Socket桥已退出（代码：${code}）`);
+    proc.on('exit', (code, signal) => {
+        console.log(`[SOCKET][INFO] - Socket bridge is successfully exited（Code：${code}，Signal：${signal}）`);
         if (code !== 0 && !app.isQuitting) {
-            console.warn(`[SOCKET][WARNING] - 检测到Socket桥异常退出，尝试重启......`);
+            console.warn(`[SOCKET][WARNING] - Unexpected error occurred, rebooting（Code：${code}，Signal：${signal}）`);
             setTimeout(() => {
                 startSocket(proc);
             }, 2000);
@@ -74,4 +71,4 @@ function startSocket(proc) {
 }
 
 
-module.exports = { isArm, getSocketPath, startSocket };
+module.exports = { isArm, startSocket };
