@@ -1,6 +1,7 @@
 const { Menu } = require('electron');
 const { URL } = require('../config');
 const { refreshAction, clearCacheAction, entrypointAction, devToolsAction, linkAction, customEntrypointAction } = require('./action');
+const { isArm } = require('./ruffle/ruffle_socket');
 
 
 /**
@@ -54,16 +55,18 @@ function createMenu(window) {
 
 function createVersionMenu(window) {
     let menu = [];
-    // 添加官方服务器节点（国服、台服）
-    URL.officialUrl.forEach((item) => {
-        menu.push(entrypointAction(window, item));
-    });
-    menu.push({type: 'separator'});
-    // 添加官方服务器镜像节点
-    URL.mirrorUrl.forEach((item) => {
-        menu.push(entrypointAction(window, item));
-    });
-    menu.push({type: 'separator'});
+    if (!isArm()) {
+        // 添加官方服务器节点（国服、台服）
+        URL.officialUrl.forEach((item) => {
+            menu.push(entrypointAction(window, item));
+        });
+        menu.push({type: 'separator'});
+        // 添加官方服务器镜像节点
+        URL.mirrorUrl.forEach((item) => {
+            menu.push(entrypointAction(window, item));
+        });
+        menu.push({type: 'separator'});
+    }
     // 添加平行摩尔服务器节点
     URL.verseUrl.forEach((item) => {
         menu.push(entrypointAction(window, item));
