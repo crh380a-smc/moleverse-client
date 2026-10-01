@@ -3,6 +3,7 @@ const { createMainWindow } = require('./app/window');
 const { usePepFlash } = require('./app/plugin/flash_plugin');
 const { createMenu } = require('./app/menu');
 const { createFilter } = require('./app/filter');
+const { isArm, startSocket } = require('./app/ruffle/ruffle_socket');
 
 
 /**
@@ -15,11 +16,21 @@ const { createFilter } = require('./app/filter');
 
 // 主窗口空对象
 let mainWindow = null;
-// 挂载 Flash 插件
-usePepFlash();
+// Ruffle Socket 桥进程空对象
+let socketProcess = null;
+
+// 非 ARM 架构挂载 Adobe Flash Player PPAPI 插件
+if (!isArm()) {
+    usePepFlash();
+}
 
 /* 应用准备就绪的流程控制 */
 app.on('ready', () => {
+    // ARM 架构没有合适的 Adobe Flash Player PPAPI 插件，
+    // 采用 Ruffle 渲染
+    if (isArm()) {
+        startSocket(socketProcess);
+    }
     // 创建资源过滤器
     createFilter();
     // 创建主窗口并返回主窗口实例
@@ -33,6 +44,14 @@ app.on('ready', () => {
         // 退出应用
         app.quit();
     });
+});
+
+/* 应用关闭前杀死 Socket 桥 */
+app.on('before-quit', () => {
+    app.isQuitting = true;
+    if (socketProcess) {
+        socketProcess.kill('SIGTERM');
+    }
 });
 
 /* 针对 MAC 系统的窗口关闭流程控制 */

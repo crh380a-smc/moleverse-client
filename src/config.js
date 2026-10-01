@@ -12,6 +12,17 @@ const URL = require('./manifest/url.json');
 const FILTERS = require('./manifest/filter.json');
 const STORE_SCHEMA = require('./manifest/store.json');
 const CUSTOM_ENTRYPOINT_ID = 999;
+const RUFFLE_SOCKET_HOST = '127.0.0.1';
+const RUFFLE_SOCKET_PORT = 60428;
 
 
-module.exports = { BASE_DIR, WINDOW, URL, FILTERS, STORE_SCHEMA, CUSTOM_ENTRYPOINT_ID };
+module.exports = {
+    BASE_DIR,
+    WINDOW,
+    URL,
+    FILTERS,
+    STORE_SCHEMA,
+    CUSTOM_ENTRYPOINT_ID,
+    RUFFLE_SOCKET_HOST,
+    RUFFLE_SOCKET_PORT,
+};
