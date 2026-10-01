@@ -40,7 +40,7 @@
     "mac": {
       "category": "public.app-category.productivity",
       "icon": "build/mole.icns",
-      "artifactName": "${productName}-Darwin-${version}-${arch}.${ext}",
+      "artifactName": "${productName}-Darwin-${arch}-${version}.${ext}",
       "target": [
         "zip"
       ]
@@ -55,7 +55,7 @@
     },
     "linux": {
       "icon": "build/mole.png",
-      "artifactName": "${productName}-Linux-${version}.${ext}",
+      "artifactName": "${productName}-Linux-${arch}-${version}.${ext}",
       "target": [
         "zip"
       ]
