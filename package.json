@@ -1,6 +1,6 @@
 {
   "name": "mole-client",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "MoleVerse Electron Client",
   "keywords": [
     "Electron"
@@ -20,8 +20,9 @@
     "electron-builder": "^26.8.1"
   },
   "dependencies": {
+    "electron-prompt": "^1.7.0",
     "electron-store": "^8.0.0",
-    "electron-prompt": "^1.7.0"
+    "ws": "^8.22.0"
   },
   "build": {
     "appId": "MoleVerseClient",
@@ -39,7 +40,7 @@
     "mac": {
       "category": "public.app-category.productivity",
       "icon": "build/mole.icns",
-      "artifactName": "${productName}-Darwin-${version}-${arch}.${ext}",
+      "artifactName": "${productName}-Darwin-${arch}-${version}.${ext}",
       "target": [
         "zip"
       ]
@@ -54,7 +55,7 @@
     },
     "linux": {
       "icon": "build/mole.png",
-      "artifactName": "${productName}-Linux-${version}.${ext}",
+      "artifactName": "${productName}-Linux-${arch}-${version}.${ext}",
       "target": [
         "zip"
       ]

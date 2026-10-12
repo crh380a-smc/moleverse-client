@@ -1,6 +1,7 @@
 const { BrowserWindow } = require('electron');
-const { WINDOW } = require('../config');
+const { WINDOW, RUFFLE_SOCKET_HOST, RUFFLE_SOCKET_PORT } = require('../config');
 const { store } = require('./store');
+const { isArm } = require('./ruffle/ruffle_socket');
 
 
 /**
@@ -33,7 +34,11 @@ function createMainWindow() {
         }
     });
     // 加载最近一次连接的节点
-    mainWindow.loadURL(store.get('entrypoint'));
+    let entrypoint = store.get('entrypoint');
+    if (isArm()) {
+        entrypoint = `${entrypoint}?player=ruffle&bridge=ws://${RUFFLE_SOCKET_HOST}:${RUFFLE_SOCKET_PORT}/`;
+    }
+    mainWindow.loadURL(entrypoint);
     // 返回 Electron 窗口对象
     return mainWindow;
 }
