@@ -1,8 +1,9 @@
 const { session } = require('electron');
 const { store } = require('./store');
 const { createWindow } = require('./window');
+const { isArm } = require('./ruffle/ruffle_socket');
 const promptDialog = require('electron-prompt');
-const { CUSTOM_ENTRYPOINT_ID, URL } = require('../config');
+const { CUSTOM_ENTRYPOINT_ID, URL, RUFFLE_SOCKET_HOST, RUFFLE_SOCKET_PORT } = require('../config');
 
 
 /**
@@ -65,7 +66,11 @@ function entrypointAction(window, entrypoint) {
             click() {
                 let e = (store.get('customEntrypoint') == undefined || store.get('customEntrypoint') == '') ? URL.verseUrl[0].url : store.get('customEntrypoint');
                 store.set('entrypoint', e);
-                window.loadURL(store.get('entrypoint'));
+                e = store.get('entrypoint');
+                if (isArm()) {
+                    e = `${e}?player=ruffle&bridge=ws://${RUFFLE_SOCKET_HOST}:${RUFFLE_SOCKET_PORT}/`;
+                }
+                window.loadURL(e);
             },
             accelerator: entrypoint.shortcut,
         };
@@ -75,7 +80,11 @@ function entrypointAction(window, entrypoint) {
             label: entrypoint.label,
             click() {
                 store.set('entrypoint', entrypoint.url);
-                window.loadURL(store.get('entrypoint'));
+                let e = store.get('entrypoint');
+                if (isArm()) {
+                    e = `${e}?player=ruffle&bridge=ws://${RUFFLE_SOCKET_HOST}:${RUFFLE_SOCKET_PORT}/`;
+                }
+                window.loadURL(e);
             },
             accelerator: entrypoint.shortcut,
         };
